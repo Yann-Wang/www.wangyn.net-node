@@ -6,6 +6,7 @@ const assert  = require('assert');
 const config  = require('../config');
 
 // 测试连接
+
 describe('首页访问', function () {
     this.timeout(5000); //should take less than 5s
     it('请求首页', function (done) {
