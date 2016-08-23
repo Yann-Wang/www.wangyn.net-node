@@ -2,10 +2,6 @@ language: node_js
 node_js:
   - "6"
 
-env:
-  - NODE_ENV=production
-  - WWW_WANGYN_NET_PORT=8000
-
 before_install:
   - sudo apt-get update
   - sudo apt-get install git-all
@@ -16,6 +12,8 @@ install:
   - npm install -g flightplan
 
 before_script:
+  - export NODE_ENV=production
+  - export WWW_WANGYN_NET_PORT=8000
   - forever start ./bin/www
 
 script:
