@@ -11,16 +11,14 @@ install:
   - npm install forever -g
   - npm install -g flightplan
 
-before_script:
+script:
   - export NODE_ENV=production
   - export WWW_WANGYN_NET_PORT=8000
   - forever start ./bin/www
-
-script:
   - npm test
 
-before_deploy:
-  - forever stop ./bin/www
+#before_deploy:
+#  - forever stop ./bin/www
 
 deploy:
   - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
