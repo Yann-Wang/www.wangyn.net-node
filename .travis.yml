@@ -2,17 +2,9 @@ language: node_js
 node_js:
   - "6"
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libxml2-dev
-
 install:
   - npm install
   - npm install forever -g
-
-before_script:
-  - export NODE_ENV=production
-  - export WWW_WANGYN_NET_PORT=8000
 
 script:
   - forever start ./bin/www
