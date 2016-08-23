@@ -2,22 +2,23 @@ language: node_js
 node_js:
   - "6"
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libxml2-dev
+
 install:
   - npm install
   - npm install forever -g
-  - npm install -g flightplan
 
-script:
+before_script:
   - export NODE_ENV=production
   - export WWW_WANGYN_NET_PORT=8000
+
+script:
   - forever start ./bin/www
   - npm test
 
-#before_deploy:
-#  - forever stop ./bin/www
 
 deploy:
   - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
 
-#after_script:
-#
