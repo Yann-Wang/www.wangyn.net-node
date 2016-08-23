@@ -1,3 +1,10 @@
 language: node_js
 node_js:
   - "6"
+
+install:
+  - npm install
+  - npm install forever -g
+  - forever start ./bin/www
+script:
+  - npm test
