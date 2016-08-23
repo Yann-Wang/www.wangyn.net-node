@@ -7,12 +7,13 @@
 var app = require('../app');
 var debug = require('debug')('www.wangyn.net-node:server');
 var http = require('http');
+var config = require('../config');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.WWW_WANGYN_NET_PORT || '3000');
+var port = normalizePort(config.port);
 app.set('port', port);
 
 /**

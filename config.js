@@ -9,3 +9,5 @@ exports.format = function () {
 
     return "combined";
 };
+
+exports.port = process.env.WWW_WANGYN_NET_PORT || '3000';

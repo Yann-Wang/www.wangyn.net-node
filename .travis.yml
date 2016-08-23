@@ -2,9 +2,31 @@ language: node_js
 node_js:
   - "6"
 
+env:
+  - NODE_ENV=production
+  - WWW_WANGYN_NET_PORT=8000
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install git-all
+
 install:
   - npm install
   - npm install forever -g
+  - npm install -g flightplan
+
+before_script:
   - forever start ./bin/www
+
 script:
   - npm test
+
+before_deploy:
+  - forever stop ./bin/www
+
+deploy:
+  skip_cleanup: true
+  - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
+
+#after_script:
+#  -
