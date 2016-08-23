@@ -3,8 +3,6 @@ node_js:
   - "6"
 
 install:
-  - sudo apt-get update
-  - sudo apt-get install git-all
   - npm install
   - npm install forever -g
   - npm install -g flightplan
