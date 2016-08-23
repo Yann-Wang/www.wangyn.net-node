@@ -29,4 +29,4 @@ deploy:
   - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
 
 #after_script:
-#  -
+#
