@@ -25,7 +25,6 @@ before_deploy:
   - forever stop ./bin/www
 
 deploy:
-  skip_cleanup: true
   - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
 
 #after_script:
