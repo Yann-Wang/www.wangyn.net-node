@@ -11,6 +11,6 @@ script:
   - npm test
 
 
-deploy:
-  - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
+#deploy:
+#  - scp -r ./ spray@45.32.251.237:~/www.wangyn.net-node
 
