@@ -7,7 +7,7 @@ var plan = require('flightplan');
 var appName = 'www.wangyn.net-node';
 var username = 'spray';
 var startFile = 'bin/www';
-var npmDir = '/home/spray/.nvm/versions/node/v6.4.0/bin/npm';
+//var npmDir = '/home/spray/.nvm/versions/node/v6.4.0/bin/npm';
 
 
 // configuration
@@ -56,7 +56,7 @@ plan.remote(function(remote) {
 
     remote.log('Install dependencies');
     remote.exec('cd /home/spray/' + appName);
-    remote.exec(npmDir + ' install');  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
+    remote.exec('npm install');  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
     //remote.exec('npm install forever -g');
 
     remote.log('Reload application');

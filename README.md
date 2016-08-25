@@ -14,9 +14,6 @@ node ./bin/www
 ### deploy
 
 ```shell
-git add --all
-git commit -m "deploy"
-git push
 fly production
 ```
 
