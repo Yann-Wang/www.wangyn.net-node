@@ -6,8 +6,19 @@
 
 ### usage
 
-```
+```shell
 cd www.wangyn.net-node
 node ./bin/www
 ```
 
+### deploy
+
+```shell
+git add --all
+git commit -m "deploy"
+git push
+fly production
+```
+
+### features
+- use flightplan to make automatic deployment.

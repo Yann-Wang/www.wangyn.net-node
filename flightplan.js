@@ -7,6 +7,7 @@ var plan = require('flightplan');
 var appName = 'www.wangyn.net-node';
 var username = 'spray';
 var startFile = 'bin/www';
+var npmDir = '/home/spray/.nvm/versions/node/v6.4.0/bin/npm';
 
 
 // configuration
@@ -21,11 +22,22 @@ var startFile = 'bin/www';
 
 plan.target('production', [
     {
-        host: '45.32.251.237',
+        host: '45.32.130.142',
         username: username,
         agent: process.env.SSH_AUTH_SOCK
     }
 ]);
+
+plan.local(function (local) {
+    local.exec('git add --all');
+    local.exec('git commit -m "modify README.md"');
+    local.exec('git push');
+});
+
+plan.remote(function(remote) {
+    remote.exec('forever stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
+    remote.exec('rm -rf /home/spray/www.wangyn.net-node');
+});
 
 // run commands on localhost
 plan.local(function(local) {
@@ -44,9 +56,11 @@ plan.remote(function(remote) {
 
     remote.log('Install dependencies');
     remote.exec('cd /home/spray/' + appName);
-    remote.exec('npm install');
+    remote.exec(npmDir + ' install');  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
+    //remote.exec('npm install forever -g');
 
     remote.log('Reload application');
-    remote.exec('forever stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
+    //remote.exec('forever stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
     remote.exec('forever start /home/spray/'+appName+'/'+startFile);
 });
+
