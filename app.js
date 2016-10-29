@@ -5,6 +5,7 @@ const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const fs           = require('fs');
+const serveStatic  = require('serve-static');
 
 const config = require('./config');
 const routes = require('./routes/index');
@@ -26,7 +27,17 @@ app.use(logger(config.format(), {stream: accessLogStream}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(serveStatic(path.join(__dirname, 'public'),{
+    maxAge: '1d',
+    setHeaders: setCustomCacheControl
+}));
+
+function setCustomCacheControl (res, path) {
+    if (serveStatic.mime.lookup(path) === 'text/html') {
+        // Custom Cache-Control for HTML files
+        res.setHeader('Cache-Control', 'public, max-age=0')
+    }
+}
 
 app.use('/', routes);
 app.use('/users', users);
