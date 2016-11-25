@@ -35,7 +35,7 @@ plan.local(function (local) {
 });
 
 plan.remote(function(remote) {
-    remote.sudo('pm2 stop /home/spray/'+appName+'/'+startFile, {user:username});
+    remote.sudo('pm2 stop 0', {user:username});
     remote.sudo('rm -rf /home/spray/www.wangyn.net-node',{user:username});
 });
 
@@ -61,6 +61,6 @@ plan.remote(function(remote) {
 
     remote.log('Reload application');
     //remote.exec('forever stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
-    remote.sudo('pm2 start /home/spray/'+appName+'/'+startFile,{user:username});
+    remote.sudo('pm2 start 0',{user:username});
 });
 
