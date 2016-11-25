@@ -35,8 +35,8 @@ plan.local(function (local) {
 });
 
 plan.remote(function(remote) {
-    remote.exec('pm2 stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
-    remote.exec('rm -rf /home/spray/www.wangyn.net-node');
+    remote.sudo('pm2 stop /home/spray/'+appName+'/'+startFile, {user:username});
+    remote.sudo('rm -rf /home/spray/www.wangyn.net-node',{user:username});
 });
 
 // run commands on localhost
@@ -55,12 +55,12 @@ plan.local(function(local) {
 plan.remote(function(remote) {
 
     remote.log('Install dependencies');
-    remote.exec('cd /home/spray/' + appName);
-    remote.exec('/home/spray/.nvm/versions/node/v6.4.0/bin/npm install');  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
+    remote.sudo('cd /home/spray/' + appName,{user:username});
+    remote.sudo('npm install',{user:username});  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
     //remote.exec('npm install forever -g');
 
     remote.log('Reload application');
     //remote.exec('forever stop /home/spray/'+appName+'/'+startFile, {failsafe: true});
-    remote.exec('pm2 start /home/spray/'+appName+'/'+startFile);
+    remote.sudo('pm2 start /home/spray/'+appName+'/'+startFile,{user:username});
 });
 
