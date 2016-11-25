@@ -55,8 +55,8 @@ plan.local(function(local) {
 plan.remote(function(remote) {
 
     remote.log('Install dependencies');
-    remote.sudo('cd /home/spray/' + appName,{user:username});
-    remote.sudo('npm install',{user:username});  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
+    remote.sudo('cd /home/spray/' + appName+'/;npm install',{user:username});
+    //remote.sudo('npm install',{user:username});  // /home/spray/.nvm/versions/node/v6.4.0/bin/npm
     //remote.exec('npm install forever -g');
 
     remote.log('Reload application');
