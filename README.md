@@ -17,7 +17,6 @@ node ./bin/www
 fly production
 ```
 
-
 ### features
 - use flightplan to make automatic deployment.
 - use travis-ci to automatic test.
